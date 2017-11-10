@@ -44,6 +44,12 @@
 #define USER_REGISTER_HEATER_ENABLED 0x04
 #define USER_REGISTER_DISABLE_OTP_RELOAD 0x02
 
+#define ADDRESS 0x40
+
+// Specify the constants for water vapor and barometric pressure.
+#define WATER_VAPOR 17.62f
+#define BAROMETRIC_PRESSURE 243.5f
+
 class HTU21D {
 
 public:
@@ -53,6 +59,8 @@ public:
   void begin(TwoWire &wirePort = Wire); //If user doesn't specificy then Wire will be used
   float readHumidity(void);
   float readTemperature(void);
+  float readDewPoint(void);
+  uint8_t checkID();
   void setResolution(byte resBits);
 
   byte readUserRegister(void);
